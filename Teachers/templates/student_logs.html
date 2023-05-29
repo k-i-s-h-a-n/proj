@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Logs</title>
+    <style>
+        
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .red-row {
+            background-color: #FAEBD7; /* Light red */
+        }
+        .green-row {
+            background-color: #FAEBD7; /* Light green */
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          button[type="submit"] {
+            background-color: #3e8e41;
+            margin-top: 20px;
+          }
+          .green-cell {
+            background-color: #C8E6C9; /* Light green */
+        }
+        
+        .red-cell {
+            background-color: #FFCDD2; /* Light red */
+        }
+        
+          
+    </style>
+</head>
+<body>
+    <table class="center">
+        <tr>
+            <th>Question Number's</th>
+            <th>Candidate's Response</th>
+            <th>Correct Answer's</th>
+            <th>Summary</th>
+
+           
+        </tr>
+        <script>
+            var student_logs = {{ student_logs|safe }};
+            var ans_values = {{ ans|safe }};
+            
+            // Display data in the table
+            for (var i = 0; i < student_logs[0].length; i++) {
+                var rowData = student_logs[0][i];
+                var rowClass = rowData === 'Not answered' ? 'red-row' : 'green-row';
+                var correctAnswer = ans_values[i];  // Get the correct answer for each question
+                var result = rowData === correctAnswer ? 'Correct' : 'Incorrect';  // Compare candidate's response with correct answer
+                
+                // Determine the CSS class for the result cell
+                var resultClass = result === 'Correct' ? 'green-cell' : 'red-cell';
+                
+                document.write('<tr class="' + rowClass + '">');
+                document.write('<td>' + (i + 1) + '</td>');
+                document.write('<td>' + rowData + '</td>');
+                document.write('<td>' + correctAnswer + '</td>');
+                document.write('<td class="' + resultClass + '">' + result + '</td>');  // Apply CSS class to result cell
+                document.write('</tr>');
+            }
+            
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+        
+
+        
+    </table>
+    <center>      
+        {% comment %} <a href="/view_results"><button type="submit" class="btn btn-primary">Download Excel</button></a> {% endcomment %}
+        <a><button type="submit" class="btn btn-primary" onclick="goBack()">Go Back</button></a>
+        <a href="/"><button type="submit" class="btn btn-primary">Go to Homepage</button></a>        
+    </center>
+    
+  
+  
+</body>
+</html>

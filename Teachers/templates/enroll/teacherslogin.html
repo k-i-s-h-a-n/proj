@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(to bottom right, #F1EEFD, #FDF0ED);
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-form {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      max-width: 80%;
+    }
+
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .login-form p.er {
+      color: red;
+      margin: 0;
+      padding-bottom: 10px;
+    }
+
+    .login-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .login-form input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 3px;
+      width: 100%;
+    }
+
+    .login-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .login-form .form-group {
+      margin-bottom: 20px;
+      color: red;
+    }
+
+    .login-form .form-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .login-form .signup-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .login-form .signup-link a {
+      color: #555;
+      text-decoration: none;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <h2>Teacher's Login</h2>
+      <form action="" method="post" novalidate>
+        {% csrf_token %} 
+        {% if form.non_field_errors %} 
+          {% for error in form.non_field_errors %} 
+            <p class="er">{{ error }}</p> 
+          {% endfor %} 
+        {% endif %} 
+        {% for fm in form %}      
+          <div class="form-group">
+            <label>{{ fm.label_tag }}</label>
+            {{ fm }}
+            {{ fm.errors|striptags }}
+          </div>
+        {% endfor %}
+        <input type="submit" value="Login">
+      </form>
+      <div class="signup-link">
+        <p>Don't have an account? <a href="/signup">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

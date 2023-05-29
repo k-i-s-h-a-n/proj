@@ -1,0 +1,237 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <style>
+      .success {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" method="post" novalidate>
+      {% csrf_token %} {% for fm in form %} {{ fm.label_tag }} {{ fm }}
+      {%if form.non_field_errors%} 
+        {%for error in form.non_field_errors%} 
+         <p class="er">{{error}} </p> 
+        {%endfor%} 
+      {%endif%} 
+      {{fm.errors|striptags }}
+      <br /><br />
+      {% endfor %}
+      <input type="submit" value="submit" />
+    </form>
+    {%if messages %} {%for message in messages%}
+    <small {%if message.tags%} class="{{message.tags}}" {%endif%}
+      >{{message}}</small
+    >
+    {%endfor%} {%endif%}
+  </body>
+</html> 
+ {% endcomment %}
+
+
+ {% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #ffa6b7, #86a8e7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        
+      }
+
+      .form-group input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .form-group input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .error {
+        color: red;
+        margin-top: 5px;
+      }
+
+      .success {
+        color: green;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <center><h2>Create an account</h2></center>
+      <form action="" method="post" novalidate>
+        {% csrf_token %} {% for fm in form %}
+        <div class="form-group">
+          <label for="{{ fm.id_for_label }}">{{ fm.label_tag }}</label>
+          {{ fm }}
+          {% if fm.errors %}
+          <p class="error">{{ fm.errors|striptags }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+        <div class="form-group">
+          <center><input type="submit" value="Submit" /></center>
+        </div>
+      </form>
+      {% if messages %} {% for message in messages %}
+      <small {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</small>
+      {% endfor %} {% endif %}
+    </div>
+  </body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #fff8d9, #f8d9ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        
+      }
+
+      .form-group input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .form-group input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .error {
+        color: red;
+        margin-top: 5px;
+      }
+
+      .success {
+        color: green;
+        margin-top: 5px;
+      }
+
+      .back-button {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .back-button a {
+        color: #555;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <center><h2>Create an account</h2></center>
+      <form action="" method="post" novalidate>
+        {% csrf_token %} {% for fm in form %}
+        <div class="form-group">
+          <label for="{{ fm.id_for_label }}">{{ fm.label_tag }}</label>
+          {{ fm }}
+          {% if fm.errors %}
+          <p class="error">{{ fm.errors|striptags }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+        <div class="form-group">
+          <center><input type="submit" value="Submit" /></center>
+        </div>
+      </form>
+      <div class="back-button">
+        <p>Already have an account? <a href="/login">Back to Login</a></p>
+      </div>
+      {% if messages %} {% for message in messages %}
+      <small {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</small>
+      {% endfor %} {% endif %}
+    </div>
+  </body>
+</html>
